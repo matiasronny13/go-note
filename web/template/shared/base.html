@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{{ .PageTitle }}</title>
+        <script defer src="/assets/js/htmx.min.js"></script>
+        <script defer src="/assets/js/marked.min.js"></script>
+        <script defer src="/assets/js/app.js"></script>
+        <script defer src="/assets/js/alpine.min.js"></script>
+        <link href="/assets/style/tailwind.css" rel="stylesheet">
+        <link href="/assets/style/main.css" rel="stylesheet">
+    </head>
+    <body class="bg-base-900 text-base-100">
+        <div class="flex flex-col min-h-screen">
+            
+
+            <div class="flex-grow flex flex-col p-2">
+                {{block "content" .}}{{end}}
+            </div>
+
+            <div class="p-1">
+                <ul class="flex flex-wrap items-center justify-center text-gray-900 dark:text-white">
+                    <li>
+                        <a href="#" class="me-4 hover:underline md:me-6">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>
