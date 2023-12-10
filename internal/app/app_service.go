@@ -7,8 +7,8 @@ import (
 	"log/slog"
 	"math/big"
 
-	"github.com/ghostrepo00/go-note/config"
-	"github.com/ghostrepo00/go-note/internal/pkg/model"
+	"github.com/matiasronny13/go-note/config"
+	"github.com/matiasronny13/go-note/internal/pkg/model"
 	"github.com/supabase-community/supabase-go"
 	"golang.org/x/crypto/bcrypt"
 )

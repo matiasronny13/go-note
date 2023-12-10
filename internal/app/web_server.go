@@ -6,8 +6,8 @@ import (
 	"os"
 	"path"
 
-	"github.com/ghostrepo00/go-note/config"
-	"github.com/ghostrepo00/go-note/internal/pkg/model"
+	"github.com/matiasronny13/go-note/config"
+	"github.com/matiasronny13/go-note/internal/pkg/model"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-contrib/multitemplate"
 	"github.com/gin-gonic/gin"

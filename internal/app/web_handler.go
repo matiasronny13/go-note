@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/ghostrepo00/go-note/config"
-	"github.com/ghostrepo00/go-note/internal/pkg/model"
+	"github.com/matiasronny13/go-note/config"
+	"github.com/matiasronny13/go-note/internal/pkg/model"
 	"github.com/gin-gonic/gin"
 )
 
