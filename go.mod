@@ -1,4 +1,4 @@
-module github.com/matiasronny13/go-note
+module github.com/ghostrepo00/go-note
 
 go 1.21.4
 

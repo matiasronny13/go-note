@@ -3,12 +3,11 @@ package app
 import (
 	"encoding/json"
 	"log/slog"
-	"net/http"
 	"os"
 	"path"
 
-	"github.com/matiasronny13/go-note/config"
-	"github.com/matiasronny13/go-note/internal/pkg/model"
+	"github.com/ghostrepo00/go-note/config"
+	"github.com/ghostrepo00/go-note/internal/pkg/model"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-contrib/multitemplate"
 	"github.com/gin-gonic/gin"
@@ -36,21 +35,23 @@ func createMyRender(appConfig *config.AppConfig) multitemplate.Renderer {
 }
 
 func ConfigureWebRouter(appConfig *config.AppConfig, dbClient *supabase.Client) *gin.Engine {
-	router := gin.Default()
-	router.HTMLRender = createMyRender(appConfig)
-	router.Use(cors.Default())
-	router.Use(gin.CustomRecovery(func(c *gin.Context, err any) {
-		slog.Error("Unhandled exception", "error", err)
-		c.HTML(http.StatusInternalServerError, "error", gin.H{"Status": 500, "Message": "Internal Error"})
-	}))
-
-	router.Static("/assets", path.Join(appConfig.Web.BasePath, "web/assets"))
-	router.StaticFile("/favicon.ico", path.Join(appConfig.Web.BasePath, "web/favicon.ico"))
-
 	var crypto CryptoService = NewCryptoService(os.Getenv("CRYPTO_KEY"), os.Getenv("CRYPTO_IV_PAD"))
 	var service AppService = NewAppService(appConfig, dbClient, crypto)
 	var handler WebHandler = NewWebHandler(appConfig, service)
 
+	router := gin.Default()
+	router.HTMLRender = createMyRender(appConfig)
+
+	// Middlewares
+	router.Use(cors.Default())
+	router.Use(gin.CustomRecovery(handler.UnexpectedError))
+	router.Use(handler.AuthenticateUser())
+
+	// Static Assets
+	router.Static("/assets", path.Join(appConfig.Web.BasePath, "web/assets"))
+	router.StaticFile("/favicon.ico", path.Join(appConfig.Web.BasePath, "web/favicon.ico"))
+
+	// Routers
 	router.GET("", handler.Default)
 	router.GET("/:id", handler.GetById)
 	router.POST("/:id/delete", handler.DeleteById)

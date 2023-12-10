@@ -9,9 +9,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/matiasronny13/go-note/config"
-	"github.com/matiasronny13/go-note/internal/app"
-	appconstant "github.com/matiasronny13/go-note/internal/pkg/app_constant"
+	"github.com/ghostrepo00/go-note/config"
+	"github.com/ghostrepo00/go-note/internal/app"
+	appconstant "github.com/ghostrepo00/go-note/internal/pkg/app_constant"
 )
 
 func getLogFileName(appConfig *config.AppConfig) (result string) {

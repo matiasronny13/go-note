@@ -30,7 +30,7 @@
         </div>
         <input title="" type="hidden" name="is_encrypted" value="{{.IsEncrypted}}"/>
     </form>
-    <dialog class="border-2 rounded-md p-4">
+    <dialog id="cancelDialog" class="border-2 rounded-md p-4">
         <p>Do you want to delete?</p>
         <form method="dialog" class="flex gap-2">
             <button class="bg-base-300 text-base-950 px-2 rounded-lg w-16" type="button" onclick="app.closeDialog();" hx-include="#contentRoot" hx-target="#contentRoot" hx-swap="outerHTML"  hx-post="/{{.PathId}}/delete">OK</button>

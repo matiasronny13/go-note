@@ -16,7 +16,7 @@ const app = (function () {
     }
 
     htmx.onLoad(function(elt) {
-        if (htmx.findAll(elt, "#contentRoot").length > 0) {
+        if (htmx.findAll(elt, "#cancelDialog").length > 0) {
             bindingDialogButtons();
         }
     })
